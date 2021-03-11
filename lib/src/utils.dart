@@ -1,5 +1,7 @@
 library google_maps_webservice.utils;
 
+import 'dart:convert';
+import 'dart:core';
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart';
@@ -58,7 +60,9 @@ abstract class GoogleWebService {
 
   @protected
   Future<Response> doGet(String url, {Map<String, dynamic> headers}) {
-    return httpClient.get(url, headers: headers);
+    Uri uri =
+        Uri.https(url, params);
+    return httpClient.get(uri, headers: headers);
   }
 
   @protected
@@ -71,7 +75,9 @@ abstract class GoogleWebService {
       'Content-type': 'application/json',
     };
     if (headers != null) postHeaders.addAll(headers);
-    return httpClient.post(url, body: body, headers: postHeaders);
+    Uri uri =
+        Uri.https(url, params);
+    return httpClient.post(uri, body: body, headers: postHeaders);
   }
 }
 
