@@ -61,7 +61,7 @@ abstract class GoogleWebService {
   @protected
   Future<Response> doGet(String url, {Map<String, dynamic> headers}) {
     Uri uri =
-        Uri.https(url, params);
+        Uri.https(url);
     return httpClient.get(uri, headers: headers);
   }
 
@@ -76,7 +76,7 @@ abstract class GoogleWebService {
     };
     if (headers != null) postHeaders.addAll(headers);
     Uri uri =
-        Uri.https(url, params);
+        Uri.https(url);
     return httpClient.post(uri, body: body, headers: postHeaders);
   }
 }
